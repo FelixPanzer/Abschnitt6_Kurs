@@ -1,4 +1,4 @@
-package felix.springframework.spring6restmvc.modul;
+package felix.springframework.spring6restmvc.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

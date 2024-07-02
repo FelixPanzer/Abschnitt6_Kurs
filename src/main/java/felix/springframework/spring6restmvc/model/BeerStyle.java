@@ -1,4 +1,4 @@
-package felix.springframework.spring6restmvc.modul;
+package felix.springframework.spring6restmvc.model;
 
 
     public enum BeerStyle {
