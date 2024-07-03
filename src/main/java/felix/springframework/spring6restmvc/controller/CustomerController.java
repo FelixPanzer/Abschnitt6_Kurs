@@ -3,7 +3,7 @@ package felix.springframework.spring6restmvc.controller;
 import java.util.List;
 import java.util.UUID;
 
-import felix.springframework.spring6restmvc.model.Customer;
+import felix.springframework.spring6restmvc.model.CustomerDTO;
 import felix.springframework.spring6restmvc.services.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ public class CustomerController
 
     @PatchMapping("{customerId}")
     public ResponseEntity updateCustomerPatchById(@PathVariable("customerId") UUID customerId,
-        @RequestBody Customer customer){
+        @RequestBody CustomerDTO customer){
 
         customerService.patchCustomerById(customerId, customer);
 
@@ -39,7 +39,7 @@ public class CustomerController
     }
 
     @DeleteMapping("{customerId}")
-    public ResponseEntity deleteById(@PathVariable("customerId") UUID customerId, @RequestBody Customer customer) {
+    public ResponseEntity deleteById(@PathVariable("customerId") UUID customerId, @RequestBody CustomerDTO customer) {
 
 
         customerService.deleteById(customerId);
@@ -49,7 +49,7 @@ public class CustomerController
     }
 
     @PutMapping("{customerId}") //Limits the method to only respond to HTTP PUT
-    public ResponseEntity updateById(@PathVariable("customerId") UUID customerId, @RequestBody Customer customer){
+    public ResponseEntity updateById(@PathVariable("customerId") UUID customerId, @RequestBody CustomerDTO customer){
 
         customerService.updateCustomerById(customerId, customer);
 
@@ -58,8 +58,8 @@ public class CustomerController
     }
 
     @PostMapping
-    public ResponseEntity handlePost(@RequestBody Customer customer){
-        Customer savedCustomer = customerService.saveNewCustomer(customer); //new customer object
+    public ResponseEntity handlePost(@RequestBody CustomerDTO customer){
+        CustomerDTO savedCustomer = customerService.saveNewCustomer(customer); //new customer object
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", "/api/v1/customer/" + savedCustomer.getId().toString());
@@ -68,12 +68,12 @@ public class CustomerController
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Customer> listAllCustomers() {
+    public List<CustomerDTO> listAllCustomers() {
         return customerService.getAllCustomers();
     }
 
     @RequestMapping("/{customerId}")
-    public Customer getCustomerById(@PathVariable("customerId") UUID id) {
+    public CustomerDTO getCustomerById(@PathVariable("customerId") UUID id) {
 
         log.debug("Get Customer by Id - in controller ");
 

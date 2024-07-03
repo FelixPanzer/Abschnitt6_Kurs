@@ -1,20 +1,23 @@
 package felix.springframework.spring6restmvc.services.beer;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
-import felix.springframework.spring6restmvc.model.Beer;
+
+import felix.springframework.spring6restmvc.entities.Beer;
+import felix.springframework.spring6restmvc.model.BeerDTO;
 
 public interface BeerService
 {
-    List<Beer> listBears(); //von BeerServiceimpl
+    List<BeerDTO> listBears(); //von BeerServiceimpl
 
-    Beer getBeerById(UUID id);
+    Optional<BeerDTO> getBeerById(UUID id);
 
-    Beer saveNewBeer(Beer beer);
+    BeerDTO saveNewBeer(BeerDTO beer);
 
-    void updateBeerById(UUID beerId, Beer beer);
+    void updateBeerById(UUID beerId, BeerDTO beer);
 
     void deleteById(UUID beerId);
 
-    void patchBeerById(UUID beerId, Beer beer);
+    void patchBeerById(UUID beerId, BeerDTO beer);
 }
